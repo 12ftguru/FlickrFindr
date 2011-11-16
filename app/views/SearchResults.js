@@ -16,7 +16,8 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
   initComponent: function() {
     Ext.apply(this, {
       dockedItems: [],
-      items: [{
+      items: [
+        {
         xtype: 'list',
         store: 'FlickrFindr.store.SearchResults',
         itemTpl: FlickrFindr.view.SearchResultTpl,
@@ -35,15 +36,31 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
                 "radius": 10,
                 "radius_units": "km"
               };
-              console.log('params: %o', easyparams);
               this.getStore().load({
                 params: easyparams
               });
             }, this);
+          },
+          itemtap: function(list, item) {
+            var itemRecord = list.getStore().getAt(item);
+            var photo = Ext.ModelMgr.getModel('FlickrFindr.model.Photo');
+            photo.load(itemRecord.get('id'), {
+              params: {
+                photo_id: itemRecord.get('id'),
+                secret: itemRecord.get('secret')
+              },
+              success: function(a, b, c) {
+                console.log('Photo: %o %o %o %o %o %o', b, b.getError(), b.getRecords(), b.getResultSet(), a, c);
+              }
+            });
 
           }
         }
-      }]
+      },
+        {
+        xtype: 'photodetails'
+      }
+      ]
     });
 
     FlickrFindr.view.SearchResults.superclass.initComponent.apply(this, arguments);
