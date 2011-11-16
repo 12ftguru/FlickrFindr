@@ -9,3 +9,13 @@
 .greenBox {
   background-color: #7ECEA0;
 }
+
+.searchresult {
+	vertical-align: middle;
+	line-height: 75px;
+}
+
+.searchresult img {
+	float: left;
+	margin-right: 15px;
+}
