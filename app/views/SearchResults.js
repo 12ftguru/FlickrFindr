@@ -42,18 +42,11 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             }, this);
           },
           itemtap: function(list, item) {
-            var itemRecord = list.getStore().getAt(item);
-            var photo = Ext.ModelMgr.getModel('FlickrFindr.model.Photo');
-            photo.load(itemRecord.get('id'), {
-              params: {
-                photo_id: itemRecord.get('id'),
-                secret: itemRecord.get('secret')
-              },
-              success: function(a, b, c) {
-                console.log('Photo: %o %o %o %o %o %o', b, b.getError(), b.getRecords(), b.getResultSet(), a, c);
-              }
-            });
-
+            //We're given just the item number, not the actual record. Have to get that first.
+            var photo = list.getStore().getAt(item);
+            var resultPanel = list.up('#searchresults');
+            resultPanel.down('photodetails').update(photo.data);
+            resultPanel.setActiveItem(1);
           }
         }
       },

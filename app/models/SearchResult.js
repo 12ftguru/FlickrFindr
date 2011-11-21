@@ -38,7 +38,7 @@ Ext.regStore('FlickrFindr.store.SearchResults', {
     callbackParam: 'jsoncallback',
     extraParams: {
       'method': 'flickr.photos.search',
-      'api_key': 'e11e7d29f89cd7d93063a6dfa2408c32',
+      'api_key': '783f65d9946d0be7be12757782eeb7a7',
       'format': 'json',
       'per_page': 25
     },
