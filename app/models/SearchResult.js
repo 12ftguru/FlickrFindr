@@ -34,7 +34,7 @@ Ext.regStore('FlickrFindr.store.SearchResults', {
   autoLoad: false,
   proxy: {
     type: 'scripttag',
-    url: 'http://api.flickr.com/services/rest/?method=flickr.photos.search',
+    url: 'http://api.flickr.com/services/rest/',
     callbackParam: 'jsoncallback',
     extraParams: {
       'method': 'flickr.photos.search',
@@ -45,20 +45,6 @@ Ext.regStore('FlickrFindr.store.SearchResults', {
     reader: {
       type: 'json',
       root: 'photos.photo'
-    }
-  },
-  listeners: {
-    'load': {
-      fn: function(store, records, success) {
-/*
- if (Ext.isEmpty(operation.request.params.min_upload_date)) {
-          var dt = new Date();
-          operation.request.params.min_upload_date = dt.format(Date.patterns.ISO8601Long);
-
-        }
-        */
-        console.log('Load-- Store:%o Records: %o Success: %o', store, records, success);
-      }
     }
   }
 });
