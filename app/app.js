@@ -4,7 +4,6 @@
  * launch method (see app/views/Viewport.js).
  */
 FlickrFindr = new Ext.Application({
-    defaultTarget: "viewport",
     name: "FlickrFindr",
     launch: function() {
         this.viewport = new FlickrFindr.Viewport();
