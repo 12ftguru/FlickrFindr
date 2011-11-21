@@ -42,9 +42,12 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
           itemtap: function(list, item) {
             //We're given just the item number, not the actual record. Have to get that first.
             var photo = list.getStore().getAt(item);
-            var resultPanel = list.up('#searchresults');
-            resultPanel.down('photodetails').update(photo.data);
-            resultPanel.setActiveItem(1);
+
+            Ext.dispatch({
+              controller: 'searchresults',
+              action: 'showDetails',
+              args: [photo]
+            });
           }
         }
       },
