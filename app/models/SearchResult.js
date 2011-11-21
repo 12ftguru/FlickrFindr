@@ -1,5 +1,3 @@
-Ext.namespace('FlickrFindr.model', 'FlickrFindr.store');
-
 Ext.regModel('FlickrFindr.model.SearchResult', {
   fields: [
     {
