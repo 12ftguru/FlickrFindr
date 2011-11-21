@@ -14,7 +14,10 @@ FlickrFindr.view.PhotoDetails = Ext.extend(Ext.Panel, {
       text: 'Back',
       ui: 'back',
       handler: function() {
-        this.up('#searchresults').setActiveItem(0);
+        Ext.dispatch({
+          controller: 'searchresults',
+          action: 'showResults'
+        });
       }
     }
     ]
