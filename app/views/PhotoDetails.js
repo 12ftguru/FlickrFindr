@@ -1,11 +1,7 @@
-Ext.namespace('FlickrFindr.view');
-
-
-
 FlickrFindr.view.PhotoDetails = Ext.extend(Ext.Panel, {
   id: 'photodetails',
   fullscreen: true,
-  tpl: '<h1>{title}</h1><img src="http://src.sencha.io/x100/http://farm{farm}.static.flickr.com/{server}/{id}_{secret}_b.jpg"></img>',
+  tpl: '<h1>{title}</h1><img src="http://src.sencha.io/x100/x100/http://farm{farm}.static.flickr.com/{server}/{id}_{secret}_b.jpg"></img>',
   dockedItems: [
     {
     xtype: 'toolbar',
