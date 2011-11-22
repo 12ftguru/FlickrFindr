@@ -19,6 +19,18 @@ FlickrFindr.view.PhotoDetails = Ext.extend(Ext.Panel, {
           action: 'showResults'
         });
       }
+    }, {
+      xtype: 'spacer'
+    },
+      {
+      text: 'Save',
+      ui: 'action',
+      handler: function() {
+        Ext.dispatch({
+          controller: 'bookmarks',
+          action: 'addPhotoBookmark'
+        });
+      }
     }
     ]
   }

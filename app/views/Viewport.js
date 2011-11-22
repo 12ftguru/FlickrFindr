@@ -16,13 +16,12 @@ FlickrFindr.Viewport = Ext.extend(Ext.TabPanel, {
         title: 'Search',
         iconCls: 'search'
       },
-              {
-        xtype: 'panel',
-        html: 'Bookmarks go here.',
+                              {
+        xtype: 'bookmarks',
         title: 'Bookmarks',
         iconCls: 'favorites'
       }
-              ]
+                              ]
     });
 
     FlickrFindr.Viewport.superclass.initComponent.apply(this, arguments);
