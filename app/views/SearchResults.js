@@ -29,7 +29,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             });
           }
         },
-                              {
+                                                                      {
           text: 'Next 25',
           ui: 'forward',
           handler: function() {
@@ -52,6 +52,12 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
               autoUpdate: false
             });
             geo.updateLocation(function(geo) {
+              if (geo === null) {
+                geo = {
+                  latitude: 38.8894504,
+                  longitude: -77.0353496
+                };
+              }
               var easyparams = {
                 "min_upload_date": dt.format("Y-m-d H:i:s"),
                 "lat": geo.latitude,
