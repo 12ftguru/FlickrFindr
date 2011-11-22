@@ -13,7 +13,33 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
 
   initComponent: function() {
     Ext.apply(this, {
-      dockedItems: [],
+      dockedItems: [{
+        xtype: 'toolbar',
+        dock: 'top',
+        title: 'Search',
+        items: [{
+          xtype: 'spacer'
+        }, {
+          text: 'Previous 25',
+          ui: 'back',
+          handler: function() {
+            Ext.dispatch({
+              controller: 'searchresults',
+              action: 'previousPage'
+            });
+          }
+        },
+                              {
+          text: 'Next 25',
+          ui: 'forward',
+          handler: function() {
+            Ext.dispatch({
+              controller: 'searchresults',
+              action: 'nextPage'
+            });
+          }
+        }]
+      }],
       items: [
         {
         xtype: 'list',
@@ -34,9 +60,9 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
                 "radius": 10,
                 "radius_units": "km"
               };
-              this.getStore().load({
-                params: easyparams
-              });
+
+              this.getStore().getProxy().extraParams = Ext.applyIf(this.getStore().getProxy().extraParams, easyparams);
+              this.getStore().load();
             }, this);
           },
           itemtap: function(list, item) {
