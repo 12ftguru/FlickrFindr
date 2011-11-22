@@ -55,6 +55,9 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             var geo = new Ext.util.GeoLocation({
               autoUpdate: false
             });
+            console.log('here');
+            console.log(geo.latitude);
+            console.log(geo.longitude);
             geo.updateLocation(function(geo) {
               if (geo === null) {
                 geo = {

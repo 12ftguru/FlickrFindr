@@ -1,7 +1,3 @@
-Ext.namespace('FlickrFindr.view');
-
-
-
 FlickrFindr.view.PhotoBookmarkDetails = Ext.extend(Ext.Panel, {
   id: 'bookmarkdetails',
   fullscreen: true,
