@@ -1,5 +1,3 @@
-Ext.namespace('FlickrFindr.controller');
-
 Ext.regController('searchresults', {
   showResults: function() {
     var results = Ext.getCmp('searchresults');

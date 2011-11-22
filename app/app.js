@@ -9,4 +9,4 @@ FlickrFindr = new Ext.Application({
         this.viewport = new FlickrFindr.Viewport();
     }
 });
-Ext.namespace('FlickrFindr.view', 'FlickrFindr.model', 'FlickrFindr.store');
+Ext.namespace('FlickrFindr.view', 'FlickrFindr.model', 'FlickrFindr.store', 'FlickrFindr.controller');
