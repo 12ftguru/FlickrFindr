@@ -24,13 +24,16 @@ Ext.regController('bookmarks', {
   },
   showDetails: function(interaction) {
     var photo = interaction.args[0];
-    var results = Ext.getCmp('bookmarks');
-    results.down('bookmarkdetails').update(photo.data);
-    results.setActiveItem(1);
+    var bookmarks = Ext.getCmp('bookmarks');
+    bookmarks.down('bookmarkdetails').update(photo.data);
+    bookmarks.setActiveItem(1, 'slide');
   },
-  showResults: function() {
-    var results = Ext.getCmp('bookmarks');
-    results.setActiveItem(0);
+  showBookmarks: function() {
+    var bookmarks = Ext.getCmp('bookmarks');
+    bookmarks.setActiveItem(0, {
+      type: 'slide',
+      direction: 'right'
+    });
   }
 
 });
