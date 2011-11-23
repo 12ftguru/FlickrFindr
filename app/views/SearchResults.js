@@ -29,7 +29,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             });
           }
         },
-                                                                                {
+                                                                                                    {
           text: 'Next 25',
           ui: 'forward',
           handler: function() {
@@ -51,6 +51,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             var geo = new Ext.util.GeoLocation({
               autoUpdate: false
             });
+
             var easyparams = {
               "min_upload_date": dt.format("Y-m-d H:i:s"),
               "lat": 38.8894504,
@@ -61,6 +62,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             };
 
             this.getStore().getProxy().extraParams = Ext.applyIf(this.getStore().getProxy().extraParams, easyparams);
+            this.getStore().load();
 
             geo.updateLocation(function(geo) {
               if (geo === null) {
