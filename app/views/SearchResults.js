@@ -30,7 +30,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             });
           }
         },
-                                                                                                                                                                                                                            {
+                                                                                                                                                                                                                                                          {
           text: 'Next 25',
           ui: 'forward',
           style: 'display:none;',
@@ -84,9 +84,9 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
                 },
                 locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
 
-                  Ext.Msg.alert('Unable to set location, using default location.');
+                  Ext.Msg.alert('Unable to set location\nusing default location.');
                   var store = Ext.getCmp('searchresults').down('list').getStore();
-
+                  store.getProxy().extraParams = Ext.apply(store.getProxy().extraParams, easyparams);
                   store.load();
 
                 }
@@ -115,8 +115,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
       },
         {
         xtype: 'photodetails'
-      }
-      ]
+      }]
     });
 
     FlickrFindr.view.SearchResults.superclass.initComponent.apply(this, arguments);
