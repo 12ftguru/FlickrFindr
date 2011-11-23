@@ -30,7 +30,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             });
           }
         },
-                                                                                                                                                                                                        {
+                                                                                                                                                                                                                            {
           text: 'Next 25',
           ui: 'forward',
           style: 'display:none;',
@@ -64,6 +64,8 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
 
             var geo = new Ext.util.GeoLocation({
               autoUpdate: true,
+              timeout: 10000,
+              // 10 second timeout
               listeners: {
                 locationupdate: function(geo) {
                   // Use our coordinates.
