@@ -1,5 +1,3 @@
-Ext.namespace('FlickrFindr.controller');
-
 Ext.regController('bookmarks', {
   addPhotoBookmark: function() {
     var panel = Ext.getCmp('photodetails');
@@ -19,7 +17,8 @@ Ext.regController('bookmarks', {
     panel.data.title, // value
     {
       focus: true,
-      autocorrect: true
+      autocorrect: true,
+      maxlength: 255
     });
   },
   showDetails: function(interaction) {

@@ -53,8 +53,8 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             });
             var easyparams = {
               "min_upload_date": dt.format("Y-m-d H:i:s"),
-              "lat": 38.8894504,
-              "lon": -77.0353496,
+              "lat": 40.759017,
+              "lon": -73.984059,
               "accuracy": 16,
               "radius": 10,
               "radius_units": "km"
