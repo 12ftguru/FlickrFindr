@@ -21,6 +21,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
           xtype: 'spacer'
         }, {
           text: 'Previous 25',
+          style: 'display:none;',
           ui: 'back',
           handler: function() {
             Ext.dispatch({
@@ -32,6 +33,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
                                                                                                     {
           text: 'Next 25',
           ui: 'forward',
+          style: 'display:none;',
           handler: function() {
             Ext.dispatch({
               controller: 'searchresults',
@@ -51,40 +53,43 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             var geo = new Ext.util.GeoLocation({
               autoUpdate: false
             });
-            var easyparams = {
-              "min_upload_date": dt.format("Y-m-d H:i:s"),
-              "lat": 40.759017,
-              "lon": -73.984059,
-              "accuracy": 16,
-              "radius": 10,
-              "radius_units": "km"
-            };
-
-            this.getStore().getProxy().extraParams = Ext.applyIf(this.getStore().getProxy().extraParams, easyparams);
-            this.getStore().load();
-
-            geo.updateLocation(function(geo) {
             console.log(geo);
+            console.log(geo.latitude);
             console.log(geo.longitude);
-              if (geo === null) {
-              console.log('here');
-                geo = {
-                  latitude: 38.8894504,
-                  longitude: -77.0353496
-                };
-              }
+            if(geo.latitude == null || geo.longitude == null) {
               var easyparams = {
                 "min_upload_date": dt.format("Y-m-d H:i:s"),
-                "lat": geo.latitude,
-                "lon": geo.longitude,
+                "lat": 40.759017,
+                "lon": -73.984059,
                 "accuracy": 16,
                 "radius": 10,
                 "radius_units": "km"
               };
+            } else {
+              geo.updateLocation(function(geo) {
+              console.log(geo);
+              console.log(geo.longitude);
+                if (geo === null) {
+                console.log('here');
+                  geo = {
+                    latitude: 38.8894504,
+                    longitude: -77.0353496
+                  };
+                }
+                var easyparams = {
+                  "min_upload_date": dt.format("Y-m-d H:i:s"),
+                  "lat": geo.latitude,
+                  "lon": geo.longitude,
+                  "accuracy": 16,
+                  "radius": 10,
+                  "radius_units": "km"
+                };
 
-              this.getStore().getProxy().extraParams = Ext.applyIf(this.getStore().getProxy().extraParams, easyparams);
-              this.getStore().load();
-            }, this);
+
+              }, this);
+            }
+            this.getStore().getProxy().extraParams = Ext.applyIf(this.getStore().getProxy().extraParams, easyparams);
+            this.getStore().load();
           },
           itemtap: function(list, item) {
             //We're given just the item number, not the actual record. Have to get that first.
