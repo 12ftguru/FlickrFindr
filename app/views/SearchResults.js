@@ -30,7 +30,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             });
           }
         },
-                                                                                                                                                                {
+                                                                                                                                                                                                        {
           text: 'Next 25',
           ui: 'forward',
           style: 'display:none;',
@@ -50,44 +50,52 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
         listeners: {
           render: function() {
             var dt = new Date().add(Date.YEAR, -1);
-            var geo = new Ext.util.GeoLocation({
-              autoUpdate: true
-            });
-            console.log(geo);
-            console.log(geo.latitude);
-            console.log(geo.longitude);
-            if (geo.latitude == null || geo.longitude == null) {
-              var easyparams = {
-                "min_upload_date": dt.format("Y-m-d H:i:s"),
-                "lat": 40.759017,
-                "lon": -73.984059,
-                "accuracy": 16,
-                "radius": 10,
-                "radius_units": "km"
-              };
-            }
-            geo.updateLocation(function(geo) {
-              console.log(geo);
-              console.log(geo.longitude);
-              if (geo === null) {
-                console.log('here');
-                geo = {
-                  latitude: 38.8894504,
-                  longitude: -77.0353496
-                };
-              }
-              var easyparams = {
-                "min_upload_date": dt.format("Y-m-d H:i:s"),
-                "lat": geo.latitude,
-                "lon": geo.longitude,
-                "accuracy": 16,
-                "radius": 10,
-                "radius_units": "km"
-              };
-              this.getStore().getProxy().extraParams = Ext.apply(this.getStore().getProxy().extraParams, easyparams);
-              this.getStore().load();
 
-            }, this);
+            // Set some defaults.
+            var easyparams = {
+              "min_upload_date": dt.format("Y-m-d H:i:s"),
+              "lat": 40.759017,
+              "lon": -73.984059,
+              "accuracy": 16,
+              "radius": 10,
+              "radius_units": "km"
+            };
+
+
+            var geo = new Ext.util.GeoLocation({
+              autoUpdate: true,
+              listeners: {
+                locationupdate: function(geo) {
+                  // Use our coordinates.
+                  easyparams = {
+                    "min_upload_date": dt.format("Y-m-d H:i:s"),
+                    "lat": geo.latitude,
+                    "lon": geo.longitude,
+                    "accuracy": 16,
+                    "radius": 10,
+                    "radius_units": "km"
+                  };
+
+                  var store = Ext.getCmp('searchresults').down('list').getStore();
+                  store.getProxy().extraParams = Ext.apply(store.getProxy().extraParams, easyparams);
+                  store.load();
+                },
+                locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
+
+                  Ext.Msg.alert('Unable to set location, using default location.');
+                  var store = Ext.getCmp('searchresults').down('list').getStore();
+
+                  store.load();
+
+                }
+              }
+            });
+
+
+
+
+
+            geo.updateLocation();
 
 
           },
