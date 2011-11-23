@@ -51,7 +51,6 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             var geo = new Ext.util.GeoLocation({
               autoUpdate: false
             });
-
             var easyparams = {
               "min_upload_date": dt.format("Y-m-d H:i:s"),
               "lat": 38.8894504,
@@ -65,7 +64,10 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             this.getStore().load();
 
             geo.updateLocation(function(geo) {
+            console.log(geo);
+            console.log(geo.longitude);
               if (geo === null) {
+              console.log('here');
                 geo = {
                   latitude: 38.8894504,
                   longitude: -77.0353496
