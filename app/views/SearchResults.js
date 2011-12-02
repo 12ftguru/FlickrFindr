@@ -84,7 +84,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
                 },
                 locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
 
-                  Ext.Msg.alert('Unable to set location\nusing default location.');
+                  Ext.Msg.alert('Unable to set location.');
                   var store = Ext.getCmp('searchresults').down('list').getStore();
                   store.getProxy().extraParams = Ext.apply(store.getProxy().extraParams, easyparams);
                   store.load();
@@ -93,14 +93,8 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
               }
             });
 
-
-
-
-
             geo.updateLocation();
-
-
-          },
+           },
           itemtap: function(list, item) {
             //We're given just the item number, not the actual record. Have to get that first.
             var photo = list.getStore().getAt(item);
