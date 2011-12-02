@@ -26,6 +26,10 @@ FlickrFindr.view.Bookmarks = Ext.extend(Ext.Panel, {
               action: 'showDetails',
               args: [photo]
             });
+          },
+          render: function() {
+            var store = this.getStore();
+            store.load();
           }
         }
       },
