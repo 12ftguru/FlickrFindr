@@ -12,7 +12,7 @@ FlickrFindr.Viewport = Ext.extend(Ext.TabPanel, {
     Ext.apply(this, {
       dockedItems: [],
       items: [{
-        xtype: 'searchresults',
+        xtype: 'searchphotos',
         title: 'Search',
         iconCls: 'search'
       },

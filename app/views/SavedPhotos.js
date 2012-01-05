@@ -15,7 +15,7 @@ FlickrFindr.view.SavedPhotos = Ext.extend(Ext.Panel, {
         {
         xtype: 'list',
         store: 'FlickrFindr.store.SavedPhotos',
-        itemTpl: FlickrFindr.view.SearchResultTpl,
+        itemTpl: FlickrFindr.view.SearchPhotosTpl,
         listeners: {
           itemtap: function(list, item) {
             //We're given just the item number, not the actual record. Have to get that first.

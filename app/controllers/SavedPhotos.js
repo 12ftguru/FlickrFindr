@@ -6,7 +6,7 @@ Ext.regController('savedPhotos', {
     Ext.Msg.prompt('Save Photo', 'Please enter a description:', function(btn, value) {
       if (btn == 'ok') {
         var savedPhotoStore = Ext.StoreMgr.get('FlickrFindr.store.SavedPhotos');
-        var savedPhoto = Ext.ModelMgr.create(panel.data, 'FlickrFindr.model.SearchResult');
+        var savedPhoto = Ext.ModelMgr.create(panel.data, 'FlickrFindr.model.SearchPhoto');
         savedPhoto.set('title', value);
         savedPhotoStore.loadRecords([savedPhoto], true); // add our savedPhoto to the store, keeping the existing savedPhotos.
         savedPhotoStore.sync(); //save the savedPhotos to local storage.

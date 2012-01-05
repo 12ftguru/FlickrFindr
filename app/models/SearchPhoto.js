@@ -28,7 +28,7 @@ Ext.regModel('FlickrFindr.model.SearchPhoto', {
 });
 
 Ext.regStore('FlickrFindr.store.SearchPhotos', {
-  model: 'FlickrFindr.model.SearchResult',
+  model: 'FlickrFindr.model.SearchPhoto',
   autoLoad: false,
   pageSize: 25,
   proxy: {
