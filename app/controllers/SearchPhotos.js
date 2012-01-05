@@ -1,6 +1,6 @@
-Ext.regController('searchresults', {
+Ext.regController('searchphotos', {
   showResults: function() {
-    var results = Ext.getCmp('searchresults');
+    var results = Ext.getCmp('searchphotos');
     var titlebar = results.getDockedItems()[0];
     var buttons = titlebar.query('button');
     Ext.each(buttons, function(button) {
@@ -15,7 +15,7 @@ Ext.regController('searchresults', {
   },
   showDetails: function(interaction) {
     var photo = interaction.args[0];
-    var results = Ext.getCmp('searchresults');
+    var results = Ext.getCmp('searchphotos');
     var titlebar = results.getDockedItems()[0];
     var buttons = titlebar.query('button');
     Ext.each(buttons, function(button) {
@@ -27,11 +27,11 @@ Ext.regController('searchresults', {
     results.setActiveItem(1, 'slide');
   },
   nextPage: function() {
-    var results = Ext.getCmp('searchresults');
+    var results = Ext.getCmp('searchphotos');
     results.down('list').getStore().nextPage();
   },
   previousPage: function() {
-    var results = Ext.getCmp('searchresults');
+    var results = Ext.getCmp('searchphotos');
     results.down('list').getStore().previousPage();
   }
 });

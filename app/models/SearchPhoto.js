@@ -1,4 +1,4 @@
-Ext.regModel('FlickrFindr.model.SearchResult', {
+Ext.regModel('FlickrFindr.model.SearchPhoto', {
   fields: [
     {
     name: 'id',
@@ -27,7 +27,7 @@ Ext.regModel('FlickrFindr.model.SearchResult', {
   ]
 });
 
-Ext.regStore('FlickrFindr.store.SearchResults', {
+Ext.regStore('FlickrFindr.store.SearchPhotos', {
   model: 'FlickrFindr.model.SearchResult',
   autoLoad: false,
   pageSize: 25,

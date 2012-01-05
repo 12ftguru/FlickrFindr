@@ -6,8 +6,8 @@ FlickrFindr.view.SearchResultTpl = new Ext.XTemplate('<div class="searchresult">
   }
 });
 
-FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
-  id: 'searchresults',
+FlickrFindr.view.SearchPhotos = Ext.extend(Ext.Panel, {
+  id: 'searchphotos',
   layout: 'card',
   fullscreen: true,
 
@@ -25,7 +25,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
           ui: 'back',
           handler: function() {
             Ext.dispatch({
-              controller: 'searchresults',
+              controller: 'searchphotos',
               action: 'previousPage'
             });
           }
@@ -36,7 +36,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
           style: 'display:none;',
           handler: function() {
             Ext.dispatch({
-              controller: 'searchresults',
+              controller: 'searchphotos',
               action: 'nextPage'
             });
           }
@@ -45,7 +45,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
       items: [
         {
         xtype: 'list',
-        store: 'FlickrFindr.store.SearchResults',
+        store: 'FlickrFindr.store.SearchPhotos',
         itemTpl: FlickrFindr.view.SearchResultTpl,
         listeners: {
           render: function() {
@@ -64,6 +64,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
 
             var geo = new Ext.util.GeoLocation({
               autoUpdate: true,
+              provider: navigator.geolocation,
               timeout: 10000,
               // 10 second timeout
               listeners: {
@@ -78,21 +79,20 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
                     "radius_units": "km"
                   };
 
-                  var store = Ext.getCmp('searchresults').down('list').getStore();
+                  var store = Ext.getCmp('searchphotos').down('list').getStore();
                   store.getProxy().extraParams = Ext.apply(store.getProxy().extraParams, easyparams);
                   store.load();
                 },
                 locationerror: function(geo, bTimeout, bPermissionDenied, bLocationUnavailable, message) {
-
                   Ext.Msg.alert('Unable to set location.');
-                  var store = Ext.getCmp('searchresults').down('list').getStore();
+                  var store = Ext.getCmp('searchphotos').down('list').getStore();
                   store.getProxy().extraParams = Ext.apply(store.getProxy().extraParams, easyparams);
                   store.load();
 
                 }
               }
             });
-
+            geo.provider=navigator.geolocation;
             geo.updateLocation();
            },
           itemtap: function(list, item) {
@@ -100,7 +100,7 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
             var photo = list.getStore().getAt(item);
 
             Ext.dispatch({
-              controller: 'searchresults',
+              controller: 'searchphotos',
               action: 'showDetails',
               args: [photo]
             });
@@ -112,8 +112,8 @@ FlickrFindr.view.SearchResults = Ext.extend(Ext.Panel, {
       }]
     });
 
-    FlickrFindr.view.SearchResults.superclass.initComponent.apply(this, arguments);
+    FlickrFindr.view.SearchPhotos.superclass.initComponent.apply(this, arguments);
   }
 });
 
-Ext.reg('searchresults', FlickrFindr.view.SearchResults);
+Ext.reg('searchphotos', FlickrFindr.view.SearchPhotos);

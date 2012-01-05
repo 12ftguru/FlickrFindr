@@ -1,5 +1,5 @@
-FlickrFindr.view.PhotoBookmarkDetails = Ext.extend(Ext.Panel, {
-  id: 'bookmarkdetails',
+FlickrFindr.view.SavedPhotoDetails = Ext.extend(Ext.Panel, {
+  id: 'savedPhotoDetails',
   fullscreen: true,
   tpl: '<h1>{title}</h1><img src="http://src.sencha.io/x100/http://farm{farm}.static.flickr.com/{server}/{id}_{secret}_b.jpg"></img>',
   dockedItems: [
@@ -11,8 +11,8 @@ FlickrFindr.view.PhotoBookmarkDetails = Ext.extend(Ext.Panel, {
       ui: 'back',
       handler: function() {
         Ext.dispatch({
-          controller: 'bookmarks',
-          action: 'showBookmarks'
+          controller: 'savedPhotos',
+          action: 'showSavedPhotos'
         });
       }
     }
@@ -20,8 +20,8 @@ FlickrFindr.view.PhotoBookmarkDetails = Ext.extend(Ext.Panel, {
   }
   ],
   initComponent: function() {
-    FlickrFindr.view.PhotoBookmarkDetails.superclass.initComponent.apply(this, arguments);
+    FlickrFindr.view.SavedPhotoDetails.superclass.initComponent.apply(this, arguments);
   }
 });
 
-Ext.reg('bookmarkdetails', FlickrFindr.view.PhotoBookmarkDetails);
+Ext.reg('savedPhotoDetails', FlickrFindr.view.SavedPhotoDetails);

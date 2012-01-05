@@ -17,8 +17,8 @@ FlickrFindr.Viewport = Ext.extend(Ext.TabPanel, {
         iconCls: 'search'
       },
                               {
-        xtype: 'bookmarks',
-        title: 'Bookmarks',
+        xtype: 'savedPhotos',
+        title: 'Saved Photos',
         iconCls: 'favorites'
       }
                               ]

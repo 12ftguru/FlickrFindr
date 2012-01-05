@@ -1,5 +1,5 @@
-FlickrFindr.view.Bookmarks = Ext.extend(Ext.Panel, {
-  id: 'bookmarks',
+FlickrFindr.view.SavedPhotos = Ext.extend(Ext.Panel, {
+  id: 'savedPhotos',
   layout: 'card',
   fullscreen: true,
 
@@ -8,13 +8,13 @@ FlickrFindr.view.Bookmarks = Ext.extend(Ext.Panel, {
       dockedItems: [{
         xtype: 'toolbar',
         dock: 'top',
-        title: 'Bookmarks',
+        title: 'Saved Photos',
         items: []
       }],
       items: [
         {
         xtype: 'list',
-        store: 'FlickrFindr.store.Bookmarks',
+        store: 'FlickrFindr.store.SavedPhotos',
         itemTpl: FlickrFindr.view.SearchResultTpl,
         listeners: {
           itemtap: function(list, item) {
@@ -22,7 +22,7 @@ FlickrFindr.view.Bookmarks = Ext.extend(Ext.Panel, {
             var photo = list.getStore().getAt(item);
 
             Ext.dispatch({
-              controller: 'bookmarks',
+              controller: 'savedPhotos',
               action: 'showDetails',
               args: [photo]
             });
@@ -30,13 +30,13 @@ FlickrFindr.view.Bookmarks = Ext.extend(Ext.Panel, {
         }
       },
         {
-        xtype: 'bookmarkdetails'
+        xtype: 'savedPhotoDetails'
       }
       ]
     });
 
-    FlickrFindr.view.Bookmarks.superclass.initComponent.apply(this, arguments);
+    FlickrFindr.view.SavedPhotos.superclass.initComponent.apply(this, arguments);
   }
 });
 
-Ext.reg('bookmarks', FlickrFindr.view.Bookmarks);
+Ext.reg('savedPhotos', FlickrFindr.view.SavedPhotos);

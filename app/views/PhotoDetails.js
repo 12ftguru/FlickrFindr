@@ -23,8 +23,8 @@ FlickrFindr.view.PhotoDetails = Ext.extend(Ext.Panel, {
       ui: 'action',
       handler: function() {
         Ext.dispatch({
-          controller: 'bookmarks',
-          action: 'addPhotoBookmark'
+          controller: 'savedPhotos',
+          action: 'addSavedPhoto'
         });
       }
     }
